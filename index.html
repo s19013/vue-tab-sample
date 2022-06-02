@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="app.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        <section class="tab">
+            <ul class="tab__label">
+                <li v-for="(item,id) in items" :key="item.id">
+                    <a href="#" @click.prevent="activate(item.id)"
+                    :class="{active: active === item.id}">{{item.title}}
+                    </a>
+                </li>
+            </ul>
+            <div class="tab__content" v-show="active === 1">
+                tab1
+            </div>
+            <div class="tab__content" v-show="active === 2">
+                tab2
+            </div>
+            <div class="tab__content" v-show="active === 3">
+                tab3
+            </div>
+        </section>
+
+        
+    </div>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data() {
+                return {
+                    active: 1,
+                    items:[
+                        {id:1,title:'tab1'},
+                        {id:2,title:'tab2'},
+                        {id:3,title:'tab3'},
+                    ]
+                }
+            },
+            methods: {
+                activate(id){
+                    this.active = id
+                }
+            },
+        })
+    </script>
+</html>
